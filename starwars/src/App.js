@@ -1,37 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
+import axios from "axios";
+import CardSW from "./components/CardSW.js";
 
-function Char({ index }) {
-  const [char, setChar] = useState(0);
-  const fetchChar = index =>
-    fetch(`http https://swapi.co/api/people/$(index)`)
-      .then(response => response.json())
-      .then(char => {
-        console.log(char);
-        setChar(char);
-      });
-
-  return (
-    <div className="character">
-      <div>{Char}</div>
-      <button onClick={e => fetchChar(index)}>Get Character</button>
-    </div>
-  );
-}
- 
 const App = () => {
-  const [index, setIndex] = useState(0);
+  const [data, setData] = useState([]);
 
-  // Try to think through what state you'll need for this app before starting. Then build out
-  // the state properties here.
-
-  // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a
-  // side effect in a component, you want to think about which state and/or props it should
-  // sync up with, if any.
+  useEffect(() => {
+    axios
+      .get("https://swapi.co/api/people")
+      .then(response => {
+        setData(response.data.results);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className="App">
       <h1 className="Header">React Wars</h1>
+      {data.map((value, key) => {
+        return <CardSW key={key} value={value} />;
+      })}
     </div>
   );
 };

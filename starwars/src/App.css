@@ -1,8 +1,29 @@
 .App {
   text-align: center;
+
+  /* My code */
+  width: 800px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .Header {
   color: #443e3e;
   text-shadow: 1px 1px 5px #fff;
+  width: 100%;
 }
 /* write your parent styles in here for your App.js */
+
+.cardSW {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 400px;
+  font-family: "VT323", monospace;
+  font-size: 30px;
+  border: 1px solid black;
+  margin: 2px;
+  background-color: brown;
+  color: white;
+}
